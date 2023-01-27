@@ -1,0 +1,19 @@
+services:
+  adguard:
+    container_name: adguard
+    image: adguard/adguardhome:edge
+    ports:
+      - "53:53/tcp"
+      - "3000:3000/tcp"
+      - "80:80/tcp"
+    volumes:
+      - './work:/opt/adguardhome/work'
+      - './conf:/opt/adguardhome/conf'
+    restart: always
+    networks:
+      vlan100:
+        ipv4_address: 192.168.100.100
+networks:
+   vlan100:
+     external: true
+     name: vlan100
